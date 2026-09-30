@@ -168,20 +168,6 @@ st.markdown("""
         margin-top: 12px;
     }
 
-    /* Clinical Disclaimer Banner */
-    .disclaimer-banner {
-        background: linear-gradient(90deg, #0F172A 0%, #1E293B 100%);
-        border-left: 4px solid #38BDF8;
-        padding: 14px 20px;
-        border-radius: 8px;
-        color: #E2E8F0;
-        font-size: 0.90rem;
-        margin-bottom: 24px;
-        line-height: 1.5;
-        border: 1px solid rgba(56, 189, 248, 0.2);
-        border-left: 4px solid #38BDF8;
-    }
-
     /* Dataframe Table Headers */
     div[data-testid="stDataFrame"] {
         border-radius: 10px;
@@ -363,18 +349,10 @@ with st.sidebar:
     st.caption("• **Use Case**: QAIC UC-003 Medical Imaging")
 
 # ---------------------------------------------------------
-# MAIN PAGE HEADER & DISCLAIMER
+# MAIN PAGE HEADER
 # ---------------------------------------------------------
 st.markdown('<h1 class="main-header">Q-RADAR — Quantum-Assisted Radiology Triage</h1>', unsafe_allow_html=True)
 st.markdown('<div class="sub-header">Anomaly Routing & Priority Queuing for Emergency Medical Imaging</div>', unsafe_allow_html=True)
-
-st.markdown("""
-<div class="disclaimer-banner">
-  <strong>⚠️ Clinical Disclaimer:</strong> Q-RADAR is an AI-assisted research and triage prototype based on QAIC UC-003. 
-  It is designed strictly for image prioritization, anomaly routing, and explainable decision support. 
-  <strong>This system does NOT replace radiologists or provide definitive clinical diagnosis.</strong>
-</div>
-""", unsafe_allow_html=True)
 
 # ---------------------------------------------------------
 # PAGE 1: MAIN DASHBOARD & SMART QUEUE
@@ -844,14 +822,6 @@ elif st.session_state.page == "Lab":
     st.subheader("🧪 LIMITED-DATA LAB — Small-Sample Quantum Advantage")
     st.caption("Benchmarking Quantum Feature Mapping against Classical Deep Learning under Data-Scarce Conditions")
     st.markdown('<span class="badge-prototype">Experimental Prototype Comparison</span>', unsafe_allow_html=True)
-    
-    st.markdown("""
-    <div class="disclaimer-banner">
-      <strong>Research Premise (QAIC UC-003):</strong> Training deep classical networks (e.g. ResNet) requires thousands of annotated medical images. 
-      In rare pathologies or rapid epidemic responses, annotated datasets are extremely limited. 
-      Quantum Hilbert space kernel feature mapping enables high separability with far fewer training samples.
-    </div>
-    """, unsafe_allow_html=True)
 
     # Dataset Size Selector
     selected_size = st.select_slider(
