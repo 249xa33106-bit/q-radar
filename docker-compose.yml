@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  q-radar:
+    build: .
+    container_name: q-radar-app
+    ports:
+      - "8501:8501"  # Streamlit Web UI
+      - "8000:8000"  # FastAPI REST API
+    restart: unless-stopped
+    environment:
+      - PYTHONUNBUFFERED=1
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/v1/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
