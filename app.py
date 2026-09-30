@@ -27,7 +27,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Ultra-Attractive Hospital Dark Glassmorphism CSS
+# Ultra-Attractive Hospital Dark Theme CSS with Fixed Header
 st.markdown("""
 <style>
     /* Dark clinical futuristic theme */
@@ -36,23 +36,40 @@ st.markdown("""
         color: #F8FAFC;
     }
     
-    /* Main Header Styling */
+    /* Fixed Top Header Container */
+    .fixed-header-bar {
+        position: sticky;
+        top: 0;
+        z-index: 9999;
+        background: rgba(7, 10, 18, 0.92);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(56, 189, 248, 0.25);
+        padding: 12px 20px;
+        margin: -1rem -1rem 20px -1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    }
+    
+    /* Header Typography */
     .main-header {
         font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
         font-weight: 900;
-        font-size: 2.4rem;
+        font-size: 2.2rem;
         background: linear-gradient(135deg, #38BDF8 0%, #818CF8 50%, #C084FC 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        margin-bottom: 2px;
+        margin: 0;
         letter-spacing: -0.8px;
     }
     
     .sub-header {
-        font-size: 1.05rem;
+        font-size: 1.0rem;
         color: #94A3B8;
         font-weight: 500;
-        margin-bottom: 18px;
+        margin: 2px 0px 0px 0px;
     }
 
     /* Badges */
@@ -66,7 +83,6 @@ st.markdown("""
         font-weight: 700;
         letter-spacing: 0.8px;
         display: inline-block;
-        margin-bottom: 14px;
         text-transform: uppercase;
         box-shadow: 0 0 12px rgba(56, 189, 248, 0.15);
     }
@@ -349,10 +365,24 @@ with st.sidebar:
     st.caption("• **Use Case**: QAIC UC-003 Medical Imaging")
 
 # ---------------------------------------------------------
-# MAIN PAGE HEADER
+# STICKY FIXED TOP HEADER BAR
 # ---------------------------------------------------------
-st.markdown('<h1 class="main-header">Q-RADAR — Quantum-Assisted Radiology Triage</h1>', unsafe_allow_html=True)
-st.markdown('<div class="sub-header">Anomaly Routing & Priority Queuing for Emergency Medical Imaging</div>', unsafe_allow_html=True)
+st.markdown("""
+<div class="fixed-header-bar">
+  <div>
+    <h1 class="main-header" style="font-size:1.8rem; display:inline-block; vertical-align:middle;">⚛️ Q-RADAR</h1>
+    <span style="color:#94A3B8; font-weight:600; margin-left:12px; font-size:0.95rem; vertical-align:middle;">
+      Quantum-Assisted Radiology Triage & Anomaly Routing
+    </span>
+  </div>
+  <div>
+    <span class="badge-prototype">AI-ASSISTED RESEARCH PROTOTYPE</span>
+    <span style="background:rgba(52, 211, 153, 0.12); color:#34D399; border:1px solid rgba(52, 211, 153, 0.35); padding:4px 12px; border-radius:20px; font-size:0.75rem; font-weight:700; margin-left:8px;">
+      QAIC UC-003
+    </span>
+  </div>
+</div>
+""", unsafe_allow_html=True)
 
 # ---------------------------------------------------------
 # PAGE 1: MAIN DASHBOARD & SMART QUEUE
