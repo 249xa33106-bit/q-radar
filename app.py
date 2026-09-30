@@ -18,7 +18,7 @@ from q_radar.dataset_manager import DatasetManager
 from q_radar.limited_data_lab import LimitedDataLab
 
 # ---------------------------------------------------------
-# Page Configuration & Visual Styling
+# Page Configuration & Futuristic UI Theme Styling
 # ---------------------------------------------------------
 st.set_page_config(
     page_title="Q-RADAR — Quantum Radiology Triage",
@@ -27,94 +27,105 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Professional Hospital-Grade Dark Theme Custom CSS
+# Ultra-Attractive Hospital Dark Glassmorphism CSS
 st.markdown("""
 <style>
-    /* Dark clinical theme custom styles */
+    /* Dark clinical futuristic theme */
     .stApp {
-        background-color: #0B0F17;
+        background-color: #070A12;
         color: #F8FAFC;
     }
     
-    /* Main Title Styling */
+    /* Main Header Styling */
     .main-header {
         font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-        font-weight: 800;
-        font-size: 2.3rem;
-        background: linear-gradient(90deg, #38BDF8 0%, #818CF8 50%, #C084FC 100%);
+        font-weight: 900;
+        font-size: 2.4rem;
+        background: linear-gradient(135deg, #38BDF8 0%, #818CF8 50%, #C084FC 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         margin-bottom: 2px;
-        letter-spacing: -0.5px;
+        letter-spacing: -0.8px;
     }
     
     .sub-header {
         font-size: 1.05rem;
         color: #94A3B8;
         font-weight: 500;
-        margin-bottom: 16px;
+        margin-bottom: 18px;
     }
 
     /* Badges */
     .badge-prototype {
-        background: rgba(14, 165, 233, 0.15);
+        background: rgba(14, 165, 233, 0.12);
         color: #38BDF8;
-        border: 1px solid rgba(56, 189, 248, 0.4);
-        padding: 4px 12px;
+        border: 1px solid rgba(56, 189, 248, 0.35);
+        padding: 4px 14px;
         border-radius: 20px;
         font-size: 0.76rem;
         font-weight: 700;
-        letter-spacing: 0.6px;
+        letter-spacing: 0.8px;
         display: inline-block;
-        margin-bottom: 12px;
+        margin-bottom: 14px;
         text-transform: uppercase;
+        box-shadow: 0 0 12px rgba(56, 189, 248, 0.15);
     }
 
-    /* Sidebar Customization */
+    /* Sidebar Glassmorphism Styling */
     section[data-testid="stSidebar"] {
-        background-color: #0F172A !important;
+        background-color: #0D1322 !important;
         border-right: 1px solid #1E293B !important;
     }
 
-    .sidebar-brand {
-        padding: 10px 0px;
+    .sidebar-brand-box {
+        background: linear-gradient(180deg, rgba(30, 41, 59, 0.6) 0%, rgba(15, 23, 42, 0.8) 100%);
+        border: 1px solid rgba(56, 189, 248, 0.25);
+        border-radius: 14px;
+        padding: 16px;
         text-align: center;
-        border-bottom: 1px solid #1E293B;
-        margin-bottom: 16px;
+        margin-bottom: 20px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
     }
 
-    .sidebar-brand h2 {
-        font-size: 1.6rem;
-        font-weight: 800;
-        color: #F8FAFC;
+    .sidebar-brand-box h2 {
+        font-size: 1.7rem;
+        font-weight: 900;
+        background: linear-gradient(90deg, #38BDF8, #C084FC);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
         margin: 0;
+        letter-spacing: -0.5px;
     }
 
+    /* Smart Queue Glass Card */
     .sidebar-counter-card {
-        background: #1E293B;
-        border-radius: 10px;
-        border: 1px solid #334155;
-        padding: 12px;
-        margin-bottom: 16px;
+        background: rgba(30, 41, 59, 0.5);
+        border-radius: 12px;
+        border: 1px solid rgba(56, 189, 248, 0.3);
+        padding: 14px 16px;
+        margin-bottom: 18px;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     }
 
     /* Metric Cards */
     .card-metric {
-        background: #1E293B;
-        border-radius: 12px;
-        border: 1px solid #334155;
-        padding: 16px 20px;
+        background: rgba(15, 23, 42, 0.85);
+        border-radius: 14px;
+        border: 1px solid #1E293B;
+        padding: 18px 20px;
         text-align: center;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-        transition: transform 0.2s ease, border-color 0.2s ease;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .card-metric:hover {
         border-color: #38BDF8;
-        transform: translateY(-2px);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(56, 189, 248, 0.2);
     }
     .card-metric .metric-val {
-        font-size: 1.9rem;
-        font-weight: 800;
+        font-size: 2.0rem;
+        font-weight: 900;
         color: #F8FAFC;
     }
     .card-metric .metric-label {
@@ -122,57 +133,60 @@ st.markdown("""
         color: #94A3B8;
         margin-top: 4px;
         font-weight: 600;
+        letter-spacing: 0.3px;
     }
 
     /* Result Box Variants */
     .result-box-critical {
-        background: rgba(225, 29, 72, 0.14);
+        background: rgba(225, 29, 72, 0.12);
         border: 1.5px solid #F43F5E;
-        border-radius: 12px;
-        padding: 20px;
-        margin-top: 10px;
+        border-radius: 14px;
+        padding: 22px;
+        margin-top: 12px;
+        box-shadow: 0 0 20px rgba(244, 63, 94, 0.15);
     }
     .result-box-high {
-        background: rgba(234, 88, 12, 0.14);
+        background: rgba(234, 88, 12, 0.12);
         border: 1.5px solid #FB923C;
-        border-radius: 12px;
-        padding: 20px;
-        margin-top: 10px;
+        border-radius: 14px;
+        padding: 22px;
+        margin-top: 12px;
+        box-shadow: 0 0 20px rgba(251, 146, 60, 0.15);
     }
     .result-box-review {
-        background: rgba(234, 179, 8, 0.14);
+        background: rgba(234, 179, 8, 0.12);
         border: 1.5px solid #FACC15;
-        border-radius: 12px;
-        padding: 20px;
-        margin-top: 10px;
+        border-radius: 14px;
+        padding: 22px;
+        margin-top: 12px;
     }
     .result-box-low {
-        background: rgba(16, 185, 129, 0.14);
+        background: rgba(16, 185, 129, 0.12);
         border: 1.5px solid #34D399;
-        border-radius: 12px;
-        padding: 20px;
-        margin-top: 10px;
+        border-radius: 14px;
+        padding: 22px;
+        margin-top: 12px;
     }
 
     /* Clinical Disclaimer Banner */
     .disclaimer-banner {
-        background-color: #0F172A;
+        background: linear-gradient(90deg, #0F172A 0%, #1E293B 100%);
         border-left: 4px solid #38BDF8;
-        padding: 12px 18px;
-        border-radius: 6px;
+        padding: 14px 20px;
+        border-radius: 8px;
         color: #E2E8F0;
-        font-size: 0.88rem;
+        font-size: 0.90rem;
         margin-bottom: 24px;
         line-height: 1.5;
-        border: 1px solid #1E293B;
+        border: 1px solid rgba(56, 189, 248, 0.2);
         border-left: 4px solid #38BDF8;
     }
 
     /* Dataframe Table Headers */
     div[data-testid="stDataFrame"] {
-        border-radius: 8px;
+        border-radius: 10px;
         overflow: hidden;
-        border: 1px solid #334155;
+        border: 1px solid #1E293B;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -252,18 +266,19 @@ except Exception:
     api_healthy = False
 
 # ---------------------------------------------------------
-# SIDEBAR POLISH & NAVIGATION
+# SIDEBAR ATTRACTIVE DESIGN & NAVIGATION
 # ---------------------------------------------------------
 with st.sidebar:
     st.markdown("""
-    <div class="sidebar-brand">
-      <h2 style="background: linear-gradient(90deg, #38BDF8, #C084FC); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">⚛️ Q-RADAR</h2>
-      <p style="color:#94A3B8; font-size:0.82rem; margin:2px 0px 8px 0px; font-weight:500;">Quantum Radiology Triage</p>
+    <div class="sidebar-brand-box">
+      <div style="font-size: 2.2rem; margin-bottom: -4px;">⚛️</div>
+      <h2>Q-RADAR</h2>
+      <p style="color:#94A3B8; font-size:0.83rem; margin:2px 0px 8px 0px; font-weight:600;">Quantum Radiology Triage</p>
       <span class="badge-prototype">RESEARCH PROTOTYPE</span>
     </div>
     """, unsafe_allow_html=True)
 
-    # Quick Navigation Radio
+    # Navigation Radio
     nav_selection = st.radio(
         "NAVIGATION",
         ["📊 Main Dashboard", "📥 + Analyze New Scan", "🔬 Case Analysis View", "🧪 Limited-Data Lab", "📂 Research & Dataset Suite"],
@@ -290,17 +305,20 @@ with st.sidebar:
 
     st.divider()
 
-    # Sidebar Action & Live Queue Counter Card
+    # Sidebar Counter Card
     c_critical = sum(1 for item in st.session_state.queue if item["urgency"] == "CRITICAL")
     c_high = sum(1 for item in st.session_state.queue if item["urgency"] == "HIGH")
     c_total = len(st.session_state.queue)
 
     st.markdown(f"""
     <div class="sidebar-counter-card">
-      <div style="font-size:0.78rem; font-weight:700; color:#94A3B8; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:6px;">Smart Queue Status</div>
+      <div style="font-size:0.75rem; font-weight:800; color:#38BDF8; text-transform:uppercase; letter-spacing:0.8px; margin-bottom:8px;">Smart Queue Status</div>
       <div style="display:flex; justify-content:space-between; align-items:center;">
-        <div><span style="font-size:1.1rem; font-weight:800; color:#F8FAFC;">{c_total}</span> <span style="font-size:0.8rem; color:#CBD5E1;">Scans</span></div>
-        <div><span style="font-size:1.0rem; font-weight:800; color:#F43F5E;">🔴 {c_critical}</span> &nbsp; <span style="font-size:1.0rem; font-weight:800; color:#FB923C;">🟠 {c_high}</span></div>
+        <div><span style="font-size:1.25rem; font-weight:900; color:#F8FAFC;">{c_total}</span> <span style="font-size:0.82rem; color:#94A3B8; font-weight:600;">Scans</span></div>
+        <div style="font-size:0.95rem; font-weight:800;">
+          <span style="color:#F43F5E;">🔴 {c_critical}</span> &nbsp;&nbsp; 
+          <span style="color:#FB923C;">🟠 {c_high}</span>
+        </div>
       </div>
     </div>
     """, unsafe_allow_html=True)
@@ -337,7 +355,7 @@ with st.sidebar:
 
     st.divider()
     
-    # Backend Diagnostics
+    # Diagnostics
     st.markdown("##### **System Diagnostics**")
     st.caption("• **Backend**: Qiskit Aer Simulator")
     st.caption("• **API Endpoint**: `http://localhost:8000`")
